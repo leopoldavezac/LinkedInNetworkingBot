@@ -1,0 +1,8 @@
+login:
+
+  email_address: 'email@address.com'
+  password: 'password'
+
+query:
+  school_code_str: '12434'
+  job_title_nm: 'data scientist'
