@@ -1,0 +1,3 @@
+
+class NoMoreAlumniToConnectWith(Exception):
+    pass
