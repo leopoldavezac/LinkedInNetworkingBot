@@ -1,9 +1,9 @@
 # NetworkingBot
 
-![GitHub repo size](https://img.shields.io/github/repo-size/leopoldavezac/DeepAttribution)
-![GitHub contributors](https://img.shields.io/github/contributors/leopoldavezac/DeepAttribution)
-![GitHub stars](https://img.shields.io/github/stars/leopoldavezac/DeepAttribution?style=social)
-![GitHub forks](https://img.shields.io/github/forks/leopoldavezac/DeepAttribution?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/leopoldavezac/LinkedInNetworkingBot)
+![GitHub contributors](https://img.shields.io/github/contributors/leopoldavezac/LinkedInNetworkingBot)
+![GitHub stars](https://img.shields.io/github/stars/leopoldavezac/LinkedInNetworkingBot?style=social)
+![GitHub forks](https://img.shields.io/github/forks/leopoldavezac/LinkedInNetworkingBot?style=social)
 
 NetworkingBot is a bot to let you expand your network while you sleep. It send requests for you to your school's alumnis that work in your sector.  
 
