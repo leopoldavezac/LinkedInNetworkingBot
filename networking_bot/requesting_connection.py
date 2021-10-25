@@ -5,6 +5,7 @@ from typing import List
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium import webdriver
+from selenium.common.exceptions import ElementClickInterceptedException
 
 def request_connection(driver: webdriver.Chrome, person_url: str) -> None:
 
@@ -23,8 +24,10 @@ def request_connection(driver: webdriver.Chrome, person_url: str) -> None:
     modal_send_invite_web_el = WebDriverWait(driver, 20).until(
         lambda x: x.find_element(By.CLASS_NAME, MODAL_SEND_INVITE_WEB_EL_CLASS_NM)
     )
-
-    modal_send_invite_web_el.click()
+    try:
+        modal_send_invite_web_el.click()
+    except ElementClickInterceptedException:
+        pass #case where alumni is 'influencer'
 
 
 def request_connections(driver:webdriver.Chrome, persons_url: List[str]) -> None:
@@ -32,3 +35,15 @@ def request_connections(driver:webdriver.Chrome, persons_url: List[str]) -> None
     for person_url in persons_url:
         request_connection(driver, person_url)
         sleep(30)
+
+
+def remove_alumnis_in_pending(
+    alumnis_url:List[str],
+    alumnis_networked_url:List[str]
+    ) -> List[str]:
+
+    return [
+        alumni_url for alumni_url in alumnis_url
+        if alumni_url not in alumnis_networked_url
+        ]
+

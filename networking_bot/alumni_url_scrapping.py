@@ -12,18 +12,21 @@ BASE_QUERY_URL = 'https://www.linkedin.com/search/results/people/?origin=FACETED
 ALUMNI_NM_SPAN_CLASS_NM = 'entity-result__title-line'
 ALUMNI_NM_LINK_CLASS_NM = 'app-aware-link'
 
-def get_alumnis_url(driver: webdriver.Chrome, school_code_str: str, job_title_nm: str, page_index:int) -> List[Union[List[str], bool]]:
+def get_alumnis_url(
+    driver: webdriver.Chrome,
+    school_code: str,
+    job_title_nm: str
+    ) -> List[Union[List[str], bool]]:
 
     alumnis_url = []
 
     school_query_url = BASE_QUERY_URL + '&network=%s&schoolFilter=%s&title=%s' % (
         '%5B"S"%5D',
-        '%5B"'+school_code_str+'"%5D',
+        '%5B"'+school_code+'"%5D',
         "%20".join(job_title_nm.split(" "))
     )
 
-    page_url = school_query_url + '&page=%d' % page_index
-    driver.get(page_url)
+    driver.get(school_query_url)
 
     try:
         alumni_nm_spans = WebDriverWait(driver, 20).until(
@@ -31,7 +34,7 @@ def get_alumnis_url(driver: webdriver.Chrome, school_code_str: str, job_title_nm
         )
     except TimeoutException:
 
-        return [], False
+        return [], True
 
     for alumni_nm_span in alumni_nm_spans:
 
@@ -42,6 +45,6 @@ def get_alumnis_url(driver: webdriver.Chrome, school_code_str: str, job_title_nm
 
     sleep(10)
 
-    return alumnis_url, True
+    return alumnis_url, False
 
 

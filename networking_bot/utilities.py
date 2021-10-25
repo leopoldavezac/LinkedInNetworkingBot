@@ -62,12 +62,20 @@ def update_status(status:Dict, job_id:str, job_done:bool) -> None:
     save_status(status, job_id)
     
 
-def get_driver() -> webdriver.Chrome:
+def get_driver(cookie:str) -> webdriver.Chrome:
 
     options = webdriver.ChromeOptions()
 
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
     
     driver = webdriver.Chrome(executable_path= "./chromedriver.exe", chrome_options=options)
+
+    driver.get('https://www.linkedin.com')
+
+    driver.add_cookie({
+        'name':'li_at',
+        'value':cookie,
+        'domain':'linkedin.com'
+    })
 
     return driver

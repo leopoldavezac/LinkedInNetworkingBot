@@ -3,12 +3,11 @@ from time import sleep
 from networking_bot.utilities import (
 load_config,
 load_or_create_status,
-update_status_f,
+update_status,
 get_driver
 )
 from networking_bot.alumni_url_scrapping import get_alumnis_url
-from networking_bot.login import login
-from networking_bot.requesting_connection import request_connections
+from networking_bot.requesting_connection import request_connections, remove_alumnis_in_pending
 
 NB_LAUNCHS = 8
 
@@ -17,26 +16,26 @@ def main() -> None:
     for _ in range(NB_LAUNCHS):
 
         config = load_config()
-        status, status_file_nm = load_or_create_status(config["query"])
+        status, job_id = load_or_create_status(config["query"])
 
-        driver = get_driver()
-        login(driver, **config["login"])
+        driver = get_driver(cookie=config['cookie'])
 
-        alumnis_url, job_state = get_alumnis_url(
+        alumnis_url, job_done = get_alumnis_url(
             driver,
-            **config['query'],
-            page_index=status['last_page_scrapped']+1
+            **config['query']
         )
-        update_status_f(status, status_file_nm, job_state)
-        
-        if job_state == False:
-            break
+        alumnis_url = remove_alumnis_in_pending(alumnis_url, status['invite_sent_to_urls'])
 
-        request_connections(driver, alumnis_url)
+        if not job_done:
+
+            request_connections(driver, alumnis_url)
+            status['invite_sent_to_urls'] += alumnis_url
+            update_status(status, job_id, job_done)
+            
+            driver.quit()
+            sleep(60*60)
 
         driver.quit()
-
-        sleep(60*60)
 
 
 
