@@ -1,8 +1,4 @@
-login:
-
-  email_address: 'email@address.com'
-  password: 'password'
-
+cookie: 'replace_me_by_the_li_at_cookie'
 query:
-  school_code_str: '12434'
+  school_code: '12434'
   job_title_nm: 'data scientist'
