@@ -14,22 +14,24 @@ ALUMNI_NM_LINK_CLASS_NM = 'app-aware-link'
 
 def get_alumnis_url(
     driver: webdriver.Chrome,
+    last_page_scrapped:int,
     school_code: str,
     job_title_nm: str
     ) -> List[Union[List[str], bool]]:
 
     alumnis_url = []
 
-    school_query_url = BASE_QUERY_URL + '&network=%s&schoolFilter=%s&title=%s' % (
+    school_query_url = BASE_QUERY_URL + '&network=%s&schoolFilter=%s&title=%s&page=%d' % (
         '%5B"S"%5D',
         '%5B"'+school_code+'"%5D',
-        "%20".join(job_title_nm.split(" "))
+        "%20".join(job_title_nm.split(" ")),
+        last_page_scrapped
     )
 
     driver.get(school_query_url)
 
     try:
-        alumni_nm_spans = WebDriverWait(driver, 20).until(
+        alumni_nm_spans = WebDriverWait(driver, 10).until(
             lambda x: x.find_elements(By.CLASS_NAME, ALUMNI_NM_SPAN_CLASS_NM)
         )
     except TimeoutException:

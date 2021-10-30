@@ -5,6 +5,22 @@ import yaml
 from selenium import webdriver
 
 
+def load_invite_sent_to_urls() -> List[str]:
+
+    with open('./status/invite_sent_to_urls.txt', 'r') as f:
+        invite_sent_to_urls = f.read()
+
+    return invite_sent_to_urls.split('\n')
+
+
+def update_invite_sent_to(urls: List[str]) -> None:
+
+    urls = '\n'.join(urls)
+
+    with open('./status/invite_sent_to_urls.txt', 'w') as f:
+        f.write(urls)
+
+
 def load_config() -> Dict:
     
     with open('./config.yaml', 'r') as f:
@@ -20,7 +36,7 @@ def load_or_create_status(query:Dict) -> List[Union[Dict, str]]:
     try:
         status = load_status(job_id)
     except FileNotFoundError:
-        status = {'job_done':False, 'invite_sent_to_urls':[]}
+        status = {'job_done':False}
         save_status(status, job_id)
     
     return [status, job_id]
