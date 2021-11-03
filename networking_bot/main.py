@@ -29,7 +29,7 @@ def main() -> None:
 
         alumnis_url, job_done = get_alumnis_url(
             driver,
-            status['last_page_scrapped'],
+            status['last_page_scrapped']+1,
             **config['query']
         )
         alumnis_url = remove_alumnis_in_pending(alumnis_url, invite_sent_to_urls)   

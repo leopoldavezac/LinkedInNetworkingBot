@@ -14,7 +14,7 @@ ALUMNI_NM_LINK_CLASS_NM = 'app-aware-link'
 
 def get_alumnis_url(
     driver: webdriver.Chrome,
-    last_page_scrapped:int,
+    page_to_scrapped:int,
     school_code: str,
     job_title_nm: str
     ) -> List[Union[List[str], bool]]:
@@ -25,7 +25,7 @@ def get_alumnis_url(
         '%5B"S"%5D',
         '%5B"'+school_code+'"%5D',
         "%20".join(job_title_nm.split(" ")),
-        last_page_scrapped
+        page_to_scrapped
     )
 
     driver.get(school_query_url)
