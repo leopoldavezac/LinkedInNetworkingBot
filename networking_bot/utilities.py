@@ -36,7 +36,7 @@ def load_or_create_status(query:Dict) -> List[Union[Dict, str]]:
     try:
         status = load_status(job_id)
     except FileNotFoundError:
-        status = {'job_done':False}
+        status = {'job_done':False, 'last_page_scrapped':0}
         save_status(status, job_id)
     
     return [status, job_id]
