@@ -17,7 +17,7 @@ NetworkingBot is a bot to let you expand your network while you sleep. It send r
 
 ```bash
 
-$ path/to/this/dir pip install e .
+$ path/to/this/dir pip install -e .
 
 ```
 
@@ -56,7 +56,7 @@ $ path/to/this/dir network
 6. Type in your school name
 7. Click Show results
 8. You can find your school code in the page url 
-(ex: https:<area>//www<area>.linkedin.com/search/results/people/?origin=FACETED_SEARCH&schoolFilter=**%5B%2212434%22%5D**&sid=FW2, school code is '%5B%2212434%22%5D')
+(ex: https:<area>//www<area>.linkedin.com/search/results/people/?origin=FACETED_SEARCH&schoolFilter=%5B%"**12434**"%5D&sid=FW2, school code is 12434)
 
 ## Contact
 
