@@ -1,4 +1,5 @@
-cookie: 'replace_me_by_the_li_at_cookie'
+cookie: 'paste_your_li_at_cookie_here'
 query:
   school_code: '12434'
-  job_title_nm: 'data scientist'
+  job_title_nm: 'data'
+os_type: 'windows'

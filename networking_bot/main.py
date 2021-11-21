@@ -11,7 +11,6 @@ from networking_bot.utilities import (
 from networking_bot.alumni_url_scrapping import get_alumnis_url
 from networking_bot.requesting_connection import request_connections, remove_alumnis_in_pending
 
-# fix case where all alumnis on a given page are pending
 
 NB_LAUNCHS = 8
 
@@ -25,7 +24,7 @@ def main() -> None:
         invite_sent_to_urls = load_invite_sent_to_urls()
         status, job_id = load_or_create_status(config["query"])
 
-        driver = get_driver(cookie=config['cookie'])
+        driver = get_driver(config['cookie'], config['os_type'])
 
         alumnis_url, job_done = get_alumnis_url(
             driver,
