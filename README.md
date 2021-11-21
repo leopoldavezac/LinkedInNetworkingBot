@@ -26,7 +26,7 @@ $ path/to/this/dir pip install -e .
 
 - Download a [chromedriver](https://chromedriver.chromium.org/downloads), and place the .exe file in your clone version of this repo. Make sure the version match your browser version.
 - Find your school code (cf. bellow).
-- Update the config.yaml with your linkedin li_at cookie (cf. bellow), school code and job title.
+- Update the config.yaml with your linkedin li_at cookie (cf. bellow), school code (cf. bellow), job title and your os_type (mac or windows).
 - Run the script once a day. Due to linkedin scrapping restrictions you can only send 80 connections a day.
 
 ```bash
